@@ -13,6 +13,11 @@ function render (html) {
 */
 function listFoods () {
   // code goes here
+  let output = '';
+  for (const food of foods) {
+    output += `<p>${food}</p>`; 
+  }
+  render(output);
 }
 
 /* 
@@ -22,6 +27,12 @@ function listFoods () {
 */
 function numberedFoods () {
   // code goes here
+  let output = `<ol class="list-group">`
+  for (let i = 0; i < foods.length; i++) {
+    output += `<li class-"list-group-item>${foods[i]}</li>`
+  }
+  output += `</ol>`
+  render(output);
 }
 
 /* 
@@ -31,8 +42,21 @@ function numberedFoods () {
      - Only show foods that start with that letter
      - If no matches, display a "not found" message
 */
-function filterFoods () {
+function filterFoods() {
   // code goes here
+  const letter = prompt("pick a letter");
+  if (!letter) {
+    render("<p>PICK A LETTER</p>");
+    return;
+  }
+  const lower = letter.toLowerCase();
+  const matches = foods.filter(f => f.toLowerCase().startsWith(lower))
+  const list = matches.map(item => `<li>${item}</li>`).join(" ")
+
+  if (matches.length === 0) {
+    render("There's no letter that begins with that letter")
+  }
+  render(`<ul>${list}</ul>`)
 }
 
 /* 
@@ -61,6 +85,14 @@ document.getElementById('btnForEach').addEventListener('click', forEachFoods)
 */
 function uppercaseList () {
   // TODO: Write your code here
+  let output = "<ul>";
+  let capitalizedFoods = foods.toUpperCase();
+  for (let e = 0; e < capitalizedFoods.length(); e++) {
+    output += `<li>${capitalizedFoods[e]}</li>`
+  }
+  output += '</ul>'
+
+  render(output)
 }
 
 /* 
@@ -71,6 +103,13 @@ function uppercaseList () {
 */
 function reverseList () {
   // TODO: Write your code here
+  let output = `<ul>`
+  const reversedList = foods.reverse();
+  for (let e = 0; e < reversedList.length; e++) {
+    output += `<li>${reversedList[e]}</li>`
+  }
+  output += '</ul>'
+  render(output)
 }
 
 /* 

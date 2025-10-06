@@ -86,9 +86,10 @@ document.getElementById('btnForEach').addEventListener('click', forEachFoods)
 function uppercaseList () {
   // TODO: Write your code here
   let output = "<ul>";
-  let capitalizedFoods = foods.toUpperCase();
-  for (let e = 0; e < capitalizedFoods.length(); e++) {
-    output += `<li>${capitalizedFoods[e]}</li>`
+  const capitalizedFoods = foods.map(a => a.toUpperCase());
+  console.log(capitalizedFoods)
+  for (let o = 0; o < capitalizedFoods.length; o++) {
+    output += `<li>${capitalizedFoods[o]}</li>`
   }
   output += '</ul>'
 
@@ -120,6 +121,16 @@ function reverseList () {
 */
 function randomFoodPicker () {
   // TODO: Write your code here
+  let output = '';
+  let foodIndex = Math.floor(Math.random() * foods.length);
+  let randomFood = foods[foodIndex];
+  output = `
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Today's Pick: ${randomFood}</h5>
+  </div>
+</div>`
+  render(output)
 }
 
 /* 
